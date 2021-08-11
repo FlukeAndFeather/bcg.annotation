@@ -19,6 +19,7 @@ Imports:
     lubridate,
     ncdf4,
     plotly,
+    rlang (>= 0.4.10),
     shiny,
     shinyFiles,
     stringr
