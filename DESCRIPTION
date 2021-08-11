@@ -18,7 +18,7 @@ Imports:
     fs,
     lubridate,
     ncdf4,
-    plotly,
+    plotly (>= 4.9.3),
     rlang (>= 0.4.10),
     shiny,
     shinyFiles,
