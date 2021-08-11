@@ -1,0 +1,29 @@
+Package: bcg.annotation
+Title: Manually label heartbeats in a ballistocardiogram
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Max",
+           family = "Czapanskiy",
+           role = c("aut", "cre"),
+           email = "maxczap@stanford.edu",
+           comment = c("ORCID-ID" = "0000-0002-6302-905X"))
+Description: bcg.annotation provides a Shiny app for manually labeling
+    heartbeats in ballistocardiom data. Designed for diving animals, it
+    presents the dive profile alongside a jerk profile. Low magnitude
+    peaks in jerk during periods without motion indicate heart beats.
+License: MIT + file LICENSE
+Imports: 
+    data.table,
+    dplyr,
+    fs,
+    lubridate,
+    ncdf4,
+    plotly,
+    shiny,
+    shinyFiles,
+    stringr
+Encoding: UTF-8
+Language: es
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
