@@ -23,10 +23,8 @@ Run the annotation app on the sample data included with the package:
 library(bcg.annotation)
 # Location of example data
 nc_path <- system.file("extdata/bw180905-53_prh10_ballisto.nc", package = "bcg.annotation")
-# Copy the data to somewhere convenient
-file.copy(nc_path, "~/Downloads/")
-# Run app and follow instructions in sidebar
-bcg_app()
+# Run app with example data and follow instructions in sidebar
+bcg_app(nc_path)
 ```
 
 ## Issues

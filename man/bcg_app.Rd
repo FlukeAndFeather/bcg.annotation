@@ -4,9 +4,11 @@
 \alias{bcg_app}
 \title{Launch BCG annotation app}
 \usage{
-bcg_app(...)
+bcg_app(prh_path = NULL, ...)
 }
 \arguments{
+\item{prh_path}{Path to PRH NetCDF file (optional)}
+
 \item{...}{Additional parameters to shinyApp}
 }
 \value{

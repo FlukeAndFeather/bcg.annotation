@@ -1,10 +1,11 @@
 #' Launch BCG annotation app
 #'
+#' @param prh_path Path to PRH NetCDF file (optional)
 #' @param ... Additional parameters to shinyApp
 #'
 #' @return Runs a Shiny app
 #' @export
-bcg_app <- function(...) {
+bcg_app <- function(prh_path = NULL, ...) {
   #### UI ####
   ui <- shinyUI(fluidPage(
 
@@ -17,6 +18,7 @@ bcg_app <- function(...) {
         tags$h2("Instructions"),
 
         tags$p("1: Load deployment"),
+        tags$p("Note: This step is unnecessary if you specified a file path when calling bcg_app()"),
         shinyFilesButton("prhpath",
                          "Load PRH file",
                          "PRH file (*.nc)",
@@ -45,6 +47,7 @@ bcg_app <- function(...) {
 
     # Persistent data
     prh <- reactiveValues(
+      file_path = prh_path,
       prhdata = NULL,
       timerange = NULL,
       prhzoom = NULL
@@ -61,13 +64,16 @@ bcg_app <- function(...) {
       if (!is.integer(input$prhpath)) {
         file <- parseFilePaths(volumes, input$prhpath)
 
-        prh$prhdata <- read_nc(file$datapath)
-        prh$timerange <- NULL
-        prh$prhzoom <- zoom_prh(prh$prhdata)
-
-        beats$beatdata <- NULL
-        beats$beatidx <- NULL
+        prh$file_path <- file$datapath
       }
+    })
+    observeEvent(prh$file_path, {
+      prh$prhdata <- read_nc(prh$file_path)
+      prh$timerange <- NULL
+      prh$prhzoom <- zoom_prh(prh$prhdata)
+
+      beats$beatdata <- NULL
+      beats$beatidx <- NULL
     })
     shinyDirChoose(input,
                    "beatsdir",
