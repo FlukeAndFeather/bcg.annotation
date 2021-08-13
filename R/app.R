@@ -112,7 +112,9 @@ bcg_app <- function(prh_path = NULL, ...) {
       if (length(beats$beatidx) == 0) {
         beats$beatdata <- NULL
       } else {
-        beats$beatdata <- slice(prh$prhdata, beats$beatidx)
+        beats$beatdata <- prh$prhdata %>%
+          slice(beats$beatidx) %>%
+          mutate(bpm = 1 / as.numeric(lead(dt) - dt, unit = "mins"))
       }
     })
 
